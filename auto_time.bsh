@@ -1,7 +1,10 @@
 #!/bin/bash
 # written by Yunsen Zhang, 27/04/2022
 echo '''
-	                  This script is for automating our simulation task at fixed time.You should adjust the time to the ideal value in the bellow script before you use. I want to automate my task at 21:00, therefore, I should adjust the time. e.g. -eq 2100. Note: 850am eq 850; 21:30pm eq 2130
+	                  This script is for automating our simulation task at fixed time.
+			  You should adjust the time to the ideal value in the bellow script before you use. 
+			  I want to automate my task at 21:00, therefore, I should adjust the time. 
+			  e.g. -eq 2100. Note: 850am eq 850; 21:30pm eq 2130
 		
 	'''
 Judge=true
