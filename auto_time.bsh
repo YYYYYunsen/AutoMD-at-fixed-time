@@ -1,0 +1,46 @@
+#!/bin/bash
+# written by Yunsen Zhang, 27/04/2022
+echo '''
+	                  This script is for automating our simulation task at fixed time.You should adjust the time to the ideal value in the bellow script before you use. I want to automate my task at 21:00, therefore, I should adjust the time. e.g. -eq 2100. Note: 850am eq 850; 21:30pm eq 2130
+		
+	'''
+Judge=true
+i=0
+file_name="$1"
+file_name1="$2"
+file_name2="$3"
+while ${Judge}
+do
+	#先有模拟结束后，自动执行第一个任务
+	hh=`date '+%H%M'`
+	echo "
+	                                  Current time is $hh, please wait
+	"
+    if [ $hh -eq 2119 ]
+    then
+        gmx mdrun -deffnm $file_name/md -ntmpi 1 -ntomp 10 -pin on -v #-update gpu
+     
+     
+    #固定时间，自动执行第二个任务
+    elif [ $hh -eq 2121 ]
+    then
+        gmx mdrun -deffnm $file_name1/md -ntmpi 1 -ntomp 10 -pin on -v #-update gpu
+     
+        
+    #自动执行第三个任务
+    elif [ $hh -eq 2121 ]
+    then
+        gmx mdrun -deffnm $file_name2/md -ntmpi 1 -ntomp 10 -pin on -v #-update gpu
+     
+     
+    #不适合适的时间，不做什么
+    else
+        echo "$hh Not within time "
+     
+    fi
+	sleep 10s
+	let i++
+	if [ $(( ${i} % 50000 )) -eq 0 ];then
+		echo "This is cycle ${i}, it is not time, please wait!"
+	fi
+done	
